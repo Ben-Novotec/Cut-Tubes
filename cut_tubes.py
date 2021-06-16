@@ -76,7 +76,7 @@ def cut_tubes(component, bom_list_path, l_max=6000, use_size=True, t_saw=3):
             all_tubes[f'D {size[0]}, t {size[1]}'] = [tubes_needed, tubes_length_leftover]
 
     # create txt file
-    f = open(f'{bom_list_path[:-4]} - cut tubes.txt', 'a')
+    f = open(f'{bom_list_path[:-5]} - cut tubes.txt', 'a')
     write_file(f, all_tubes, component)
     f.close()
 
