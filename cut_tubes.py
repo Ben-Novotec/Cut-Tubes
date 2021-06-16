@@ -1,9 +1,11 @@
 """
 Creates a list of tubes required from a BOM list, with the lengths to be cut from each tube.
 author: Ben Van Raemdonck
-date: 30/04/2021
+date: 16/06/2021
 """
 import pandas as pd
+from tkinter import Tk
+from tkinter.filedialog import askopenfilename
 
 
 def cut_tubes(component, bom_list_path, l_max=6000, use_size=True, t_saw=3):
@@ -96,9 +98,12 @@ def write_file(file_path, tubes_cut, title):
 
 
 if __name__ == '__main__':
-    bom_path = '.xlsx'
+    Tk().withdraw()
+    bom_path = askopenfilename()
     cut_tubes('Constructiebuis vierkant', bom_path, 6000, True, 3)
-    cut_tubes('EN 10217-7', bom_path, use_size=False)
+    cut_tubes('Rechthoekige buis', bom_path)
+    cut_tubes('EN 10217-7', bom_path, use_size=False)  # Gelaste ronde buis
     cut_tubes('HDPE100 Drukbuis', bom_path)
-    cut_tubes('PVC Drukbuis', bom_path, l_max=5000)
+    cut_tubes('PVC Drukbuis', bom_path, 5000)
     cut_tubes('Hoeklijn', bom_path)
+    cut_tubes('DIN 976-1A', bom_path, 3000)  # Draadstang
